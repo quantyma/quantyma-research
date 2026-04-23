@@ -1,0 +1,14 @@
+{
+    "n_steps": 11000,
+    "dt": 0.01,
+    "sigma": 12.96,
+    "rho": 99.96,
+    "beta": 2.6666666666666665,
+    "warmup": 1000,
+    "noise_level": 0.2,
+    "input_window": 100,
+    "n_epochs": 20,
+    "batch_size": 128,
+    "lr": 0.001,
+    "seed": 42
+}
