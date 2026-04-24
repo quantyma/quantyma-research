@@ -26,5 +26,7 @@ All content is shared under [Creative Commons Attribution 4.0 International Lice
 
 ## Current Articles
 
-- quantyma-article-001: **Forecasting Upward and Downward Daily Movements in Petrobras Stock Using Machine Learning Techniques: 14 Years of Out-of-Sample Results** - Bruno Priantti - [DOI_LINK](https://doi.org/10.5281/zenodo.19240419).
-- quantyma-article-002: **Resilience Analysis of Recurrent Neural Networks in Predicting High-Turbulence Chaotic Systems under Stochastic Noise** - Bruno Priantti - [DOI_LINK](https://doi.org/10.5281/zenodo.19714451).
+| ID                     | Title                                                                                                                            | Author           | DOI                                                                 |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------|------------------|----------------------------------------------------------------------|
+| quantyma-article-001   | Forecasting Upward and Downward Daily Movements in Petrobras Stock Using Machine Learning Techniques: 14 Years of Out-of-Sample Results | Bruno Priantti   | https://doi.org/10.5281/zenodo.19240419                             |
+| quantyma-article-002   | Resilience Analysis of Recurrent Neural Networks in Predicting High-Turbulence Chaotic Systems under Stochastic Noise           | Bruno Priantti   | https://doi.org/10.5281/zenodo.19714451                             |
