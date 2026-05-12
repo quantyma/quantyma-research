@@ -1,22 +1,6 @@
 # Quantyma Research
 
-Quantyma Research is a personal research repository where we document and share articles, experiments, and insights related to quantitative finance, data science, and applied machine learning.
-
-## How to Use
-
-This repository is mainly for documentation and sharing of research. You can:
-
-- Browse articles
-- Access datasets (if provided)
-- Explore code and notebooks related to the articles
-
-## Contributing
-
-New articles, experiments, or updates are welcome. To contribute:
-
-1. Fork the repository
-2. Add your content in a new folder or file
-3. Submit a pull request for review
+Quantyma Research is a personal research repository where we document and share our articles, experiments, and insights related to quantitative finance, engineering, data science, and applied machine learning.
 
 ## License
 
