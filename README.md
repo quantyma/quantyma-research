@@ -16,4 +16,5 @@ All content is shared under [Creative Commons Attribution 4.0 International Lice
 | quantyma-article-002   | Resilience Analysis of Recurrent Neural Networks in Predicting High-Turbulence Chaotic Systems under Stochastic Noise                   | Bruno Priantti   | https://doi.org/10.5281/zenodo.19714451                             |
 | quantyma-article-003   | Anomaly Detection in Industrial Gearbox Systems Using Acoustic Signals Under Highly Noise Background                                    | Bruno Priantti   | https://doi.org/10.5281/zenodo.20143560|
 | quantyma-article-004   | Scenario-Based Dynamic Modeling Framework for Multi-Vector Hybrid Microgrids in Isolated Amazonian Defense Outposts                     | Bruno Priantti   | https://doi.org/10.5281/zenodo.20416615 |
+| quantyma-article-005   | SCAS: Structural Change Alert Signal for European Energy Generation Networks                                                            | Bruno Priantti   | https://doi.org/10.5281/zenodo.22905491 |
 
