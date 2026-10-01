@@ -4,12 +4,9 @@
 </div>
 
 # **Forecasting Upward and Downward Movements in Petrobras Stock Using Machine Learning**
-
 > In this repository, we apply **Machine Learning** techniques to predict the directional behavior of **Petrobras (PETR4)** daily returns. A rolling-window framework is used to train, evaluate, and deploy multiple classification models, including **Logistic Regression, SVC, Gradient Boosting, and K-Nearest Neighbors**, generating sequential out-of-sample predictions from **2010 to 2023**. The resulting predictions are evaluated through classification metrics and a financial backtest to investigate their predictive and economic performance.
 
-
-## **1. Research Question**
-
+## Research Question
 Can classical machine learning models extract predictive information from historical PETR4 market data to classify the direction of the next daily return?
 Rather than evaluating models using a single static train/test split, this project uses a **rolling-window framework** that repeatedly trains, evaluates, selects, and deploys models as new market data become available.
 The research investigates three main questions:
@@ -18,16 +15,11 @@ The research investigates three main questions:
 2. How stable is model performance across different market periods?
 3. Does the resulting directional signal translate into economically meaningful out-of-sample performance?
 
----
-
-## 2. Experimental Setup
-
+## Experimental Setup
 The experiment investigates the prediction of the directional behavior of Petrobras (PETR4) daily stock returns using Machine Learning techniques. The framework is designed to provide a reproducible and realistic evaluation through sequential out-of-sample predictions.
 
-### 2.1 Overview of the Experimental Framework
-
+### Overview of the Experimental Framework
 The experimental framework consists of the following stages:
-
 - Historical data collection
 - Data preprocessing and return computation
 - Target Labeling
@@ -35,8 +27,7 @@ The experimental framework consists of the following stages:
 - Model evaluation and selection
 - Out-of-sample production
 
-### 2.2 Data Collection
-
+### Data Collection
 The dataset consists of daily OHLC price data for Petrobras (PETR4), traded on B3, covering the period from 2010 to 2023.
 Data were obtained through the TradingView API and validated before analysis to ensure consistency and reliability.
 
@@ -45,8 +36,7 @@ Data were obtained through the TradingView API and validated before analysis to 
   <p align="center"><strong style="font-size: small;">Figure 1. Asset Market Data.</strong></p>
 </div>
 
-### 2.3 Target Labeling
-
+### Target Labeling
 Daily returns were computed from consecutive closing prices:
 
 $$
@@ -60,8 +50,7 @@ Returns were then categorized into two classes:
 
 This transforms the problem into a binary classification task.
 
-### 2.4 Rolling Window Framework
-
+### Rolling Window Framework
 A rolling window (roll-forward) framework was employed to simulate sequential model deployment under evolving market conditions.
 
 Each window consists of two phases:
@@ -104,8 +93,7 @@ The development period spans approximately ten years, followed by a twelve-month
 </div>
 
 
-### 2.5 Machine Learning Pipeline
-
+### Machine Learning Pipeline
 The Machine Learning pipeline was implemented in Python using pandas, numpy, and scikit-learn, following principles inspired by the CRISP-DM framework, the main stages are:
 
 - **Load Database:** Load OHLC data and categorized returns.
@@ -117,7 +105,7 @@ The Machine Learning pipeline was implemented in Python using pandas, numpy, and
 - **Model Selection:** Select the best-performing model according to the evaluation metrics.
 - **Production Deployment:** Save the selected model and generate out-of-sample predictions.
 
-### 2.6 Classification Models
+### Classification Models
 
 The following Machine Learning classifiers were evaluated within each rolling window:
 
@@ -126,7 +114,7 @@ The following Machine Learning classifiers were evaluated within each rolling wi
 - K-Nearest Neighbors (KNN)
 - Gradient Boosting Classifier
 
-### 2.7 Classification Metrics
+### Classification Metrics
 
 Model performance was evaluated using the following classification metrics:
 
@@ -149,16 +137,13 @@ $$
 $$
 
 where $TP$, $TN$, $FP$, and $FN$ denote true positives, true negatives, false positives, and false negatives, respectively.
-
-
  
 > Obs: The selected model was subsequently stored and used during the production phase, with continuous monitoring of its performance.
 
 
-## **5. Results**
+## Results
 
-### **5.1. Production Classification Performance**
-
+### Production Classification Performance
 A total of fourteen Machine Learning models were deployed in production from 2010 to 2023 using the rolling window framework described in the previous section. Table 2 summarizes the classification accuracy achieved by each selected model during the training, testing, and production phases. Overall, thirteen out of the fourteen deployed models achieved production accuracy above 50%, resulting in an average production accuracy of approximately 53%. This indicates that 92% of the implementations exceeded a random baseline over the fourteen-year evaluation period.
 
 Logistic Regression achieved production accuracy ranging from 52.6% to 54.7%, with relatively stable performance across training, testing, and production phases. The results show limited differences between in-sample and out-of-sample performance, indicating a comparatively stable behavior across the rolling windows.
@@ -201,7 +186,6 @@ The Support Vector Classifier (SVC) showed more modest and stable performance, w
 
 
 ### Average Classification Metrics
-
 To provide a comprehensive evaluation, Table 3 reports the average classification metrics across all production windows, including accuracy, precision, and recall for both downward and upward return classes. The overall average accuracy was **53.20%**, with precision of **52.41%** and recall of **48.67%** for downward movements, and precision of **53.79%** and recall of **57.43%** for upward movements.
 
 For the **downward class**, the average precision was **52.41%**, indicating that approximately 52% of the predicted downward movements were correctly classified. The recall was lower, at **48.67%**, suggesting that a substantial proportion of actual downward movements were not identified.
@@ -241,7 +225,6 @@ For the **upward class**, the average precision reached **53.79%**, while recall
 
 
 ### Cumulative Performance Analysis
-
 A cumulative scoring approach was used to assess model performance over time, assigning **+1** to correct predictions and **−1** to incorrect predictions. The resulting cumulative performance curve illustrates the long-term consistency of the predictions.
 
 <div align="center">
@@ -256,8 +239,7 @@ Cumulative financial returns were also computed based on the model's directional
   <p align="center"><strong>Figure 3. Cumulative financial returns from 2010 to 2023.</strong></p>
 </div>
 
-### 3.3 Annual Return Comparison
-
+### Annual Return Comparison
 To enable a clearer comparison with the underlying asset, cumulative returns were aggregated on an annual basis and contrasted with the annual returns of Petrobras (PETR4). Table 4 presents the results for the period from 2010 to 2023.
 
 The analysis reveals that the modeling strategy generally outperformed the asset during years of negative or adverse market conditions. In years such as 2010, 2011, 2014, and 2015, when PETR4 experienced substantial losses, the modeling approach maintained positive or significantly less negative returns. A notable example is 2016, in which the model achieved an annual return of approximately **89.4%**, while PETR4 returned **95.1%**.
@@ -292,8 +274,7 @@ These findings suggest that the proposed modeling framework is particularly effe
   </table>
 </div>
 
-### 3.4 Risk-Adjusted Performance
-
+### Risk-Adjusted Performance
 To further evaluate performance quality, risk-adjusted metrics were computed, including average return, volatility, and the Sharpe ratio. Table 5 summarizes the comparison between the modeling strategy and the PETR4 asset.
 
 The modeling strategy achieved an average annual return of **42.69%**, compared with **19.12%** for the asset. The modeling approach also exhibited lower volatility (**27.43%**) compared to the asset (**38.69%**). The resulting Sharpe ratio was **1.08** for the modeling strategy and **0.16** for PETR4.
@@ -326,8 +307,7 @@ The modeling strategy achieved an average annual return of **42.69%**, compared 
 </div>
 
 
-## 5. Findings
-
+## Findings
 - Fourteen Machine Learning models were deployed using the rolling window framework from 2010 to 2023.
 - Most deployed models achieved production accuracy above 50%, with an average accuracy of approximately 53%.
 - K-Nearest Neighbors (KNN) demonstrated the most stable performance across training, testing, and production phases.
@@ -338,8 +318,7 @@ The modeling strategy achieved an average annual return of **42.69%**, compared 
 - The modeling strategy achieved higher risk-adjusted performance than the passive PETR4 benchmark, with a higher Sharpe ratio.
 
 
-## 6. Limitations and Future Work
-
+## Limitations and Future Work
 - The model showed limitations in capturing strong upward market movements.
 - The directional bias toward upward predictions may reduce the identification of downward movements.
 - Gradient Boosting showed sensitivity to changes between training and production data.
@@ -347,10 +326,17 @@ The modeling strategy achieved an average annual return of **42.69%**, compared 
 - Regime-aware models may be investigated to improve adaptation to changing market conditions.
 - Alternative transaction cost structures may be evaluated.
 - Future experiments may focus on improving performance during strong upward market trends.
-  
 
-## **11. Project Structure**
+## References
+1. Tashman, L. J. (2000). *Out-of-sample tests of forecasting accuracy: An analysis and review*. International Journal of Forecasting, 16(4), 437–450.
+2. Friedman, J. H. (2001). *Greedy function approximation: A gradient boosting machine*. The Annals of Statistics, 29(5), 1189–1232.
+3. Cortes, C., & Vapnik, V. (1995). *Support-vector networks*. Machine Learning, 20(3), 273–297.
+4. Cover, T. M., & Hart, P. E. (1967). *Nearest neighbor pattern classification*. IEEE Transactions on Information Theory, 13(1), 21–27.
+5. Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). *Applied Logistic Regression*. Wiley.
+6. Hull, J. C. (2018). *Options, Futures, and Other Derivatives*. Pearson.
+7. Shearer, C. (2000). *The CRISP-DM model: The new blueprint for data mining*.
 
+## Project Structure
 ```text
 📦 quantyma-petr4-ml
 ┣ 📂 data
@@ -372,10 +358,7 @@ The modeling strategy achieved an average annual return of **42.69%**, compared 
 ┗ 📜 LICENSE
 ```
 
----
-
-## **12. Reproducibility**
-
+## Reproducibility
 Clone the repository and install the required dependencies:
 
 ```bash
@@ -385,16 +368,3 @@ pip install -r requirements.txt
 ```
 
 The notebooks reproduce the main stages of the research, from data processing and feature construction to model evaluation and backtesting.
-
----
-
-## **13. References**
-
-1. Tashman, L. J. (2000). *Out-of-sample tests of forecasting accuracy: An analysis and review*. International Journal of Forecasting, 16(4), 437–450.
-2. Friedman, J. H. (2001). *Greedy function approximation: A gradient boosting machine*. The Annals of Statistics, 29(5), 1189–1232.
-3. Cortes, C., & Vapnik, V. (1995). *Support-vector networks*. Machine Learning, 20(3), 273–297.
-4. Cover, T. M., & Hart, P. E. (1967). *Nearest neighbor pattern classification*. IEEE Transactions on Information Theory, 13(1), 21–27.
-5. Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). *Applied Logistic Regression*. Wiley.
-6. Hull, J. C. (2018). *Options, Futures, and Other Derivatives*. Pearson.
-7. Shearer, C. (2000). *The CRISP-DM model: The new blueprint for data mining*.
-8. Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
