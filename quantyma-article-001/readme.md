@@ -41,7 +41,7 @@ The experimental framework consists of the following stages:
 The dataset consists of daily OHLC price data for Petrobras (PETR4), traded on B3, covering the period from 2010 to 2023.
 Data were obtained through the TradingView API and validated before analysis to ensure consistency and reliability.
 
-![Historical price series of PETR4](images/petr4_price.png)
+![Historical price series of PETR4](images/asset_market_data.png)
 
 ### 2.3 Return Computation and Labeling
 
