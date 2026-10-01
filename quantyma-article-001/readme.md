@@ -5,16 +5,13 @@
 
 # **Forecasting Upward and Downward Movements in Petrobras Stock Using Machine Learning**
 
-> A quantitative research project investigating whether machine learning models can identify the direction of daily Petrobras (PETR4) returns under a rolling-window, out-of-sample evaluation framework spanning 2010–2023.
+> In this repository, we apply **Machine Learning** techniques to predict the directional behavior of **Petrobras (PETR4)** daily returns. A rolling-window framework is used to train, evaluate, and deploy multiple classification models, including **Logistic Regression, SVC, Gradient Boosting, and K-Nearest Neighbors**, generating sequential out-of-sample predictions from **2010 to 2023**. The resulting predictions are evaluated through classification metrics and a financial backtest to investigate their predictive and economic performance.
 
----
 
 ## **1. Research Question**
 
-Can machine learning models extract predictive information from historical PETR4 market data to classify the direction of the next daily return?
-
+Can classical machine learning models extract predictive information from historical PETR4 market data to classify the direction of the next daily return?
 Rather than evaluating models using a single static train/test split, this project uses a **rolling-window framework** that repeatedly trains, evaluates, selects, and deploys models as new market data become available.
-
 The research investigates three main questions:
 
 1. Can directional information be extracted from historical PETR4 data?
@@ -23,139 +20,87 @@ The research investigates three main questions:
 
 ---
 
-## **2. Methodology**
+## 2. Experimental Setup
 
-The research pipeline consists of five main stages:
+The experiment investigates the prediction of the directional behavior of Petrobras (PETR4) daily stock returns using Machine Learning techniques. The framework is designed to provide a reproducible and realistic evaluation through sequential out-of-sample predictions.
 
-```text
-Historical Market Data
-        ↓
-Return Computation & Labeling
-        ↓
-Feature Engineering
-        ↓
-Rolling-Window Model Selection
-        ↓
-Out-of-Sample Production
-        ↓
-Performance Analysis
-```
+### 2.1 Overview of the Experimental Framework
 
-### **2.1. Data**
+The experimental framework consists of the following stages:
 
-The study uses daily OHLC data for **Petrobras (PETR4)** from **2010 to 2023**.
+- Historical data collection
+- Data preprocessing and return computation
+- Return categorization
+- Rolling window segmentation
+- Machine Learning pipeline
+- Model evaluation and selection
+- Out-of-sample production
 
-The data were obtained through the TradingView API and processed to ensure consistency before being incorporated into the modeling pipeline.
+### 2.2 Data Collection
 
----
+The dataset consists of daily OHLC price data for Petrobras (PETR4), traded on B3, covering the period from 2010 to 2023.
+Data were obtained through the TradingView API and validated before analysis to ensure consistency and reliability.
 
-### **2.2. Return Computation and Labeling**
+![Historical price series of PETR4](images/petr4_price.png)
 
-Daily returns are calculated as:
+### 2.3 Return Computation and Labeling
+
+Daily returns were computed from consecutive closing prices:
 
 $$
-r_t =
-\frac{P_t-P_{t-1}}{P_{t-1}}\times100
+r_t = \frac{P_t-P_{t-1}}{P_{t-1}}\times100
 $$
 
-The forecasting problem is then transformed into binary classification:
+Returns were then categorized into two classes:
 
-* **+1** → upward movement
-* **−1** → downward movement
+- **+1:** positive return
+- **−1:** non-positive return
 
-The target corresponds to the direction of the next-period return.
+This transforms the problem into a binary classification task.
 
----
+### 2.4 Rolling Window Framework
 
-### **2.3. Feature Engineering**
+A rolling window (roll-forward) framework was employed to simulate sequential model deployment under evolving market conditions.
 
-The models receive technical and statistical features derived from historical market information.
+Each window consists of two phases:
 
-The pipeline also supports **proprietary indicators developed specifically for the research**, which are generated inside the feature-engineering stage.
+- **Development Phase:** training and testing of candidate models.
+- **Production Phase:** out-of-sample prediction using the selected model.
 
-The feature-generation process is executed independently inside each rolling window to preserve the temporal structure of the experiment.
+The development period spans approximately ten years, followed by a twelve-month production period. After each production period, the window advances and the process is repeated, generating sequential out-of-sample evaluations from 2010 to 2023.
 
----
+![Rolling window framework](images/rolling_window.png)
 
-### **2.4. Rolling-Window Framework**
+### 2.5 Machine Learning Pipeline
 
-A rolling-window framework is used to approximate sequential model deployment in a changing financial environment.
+The Machine Learning pipeline was implemented in Python using pandas, numpy, and scikit-learn, following principles inspired by the CRISP-DM framework.
 
-Each window contains two stages:
+The main stages are:
 
-```text
-Development Window
-    ├── Training
-    └── Testing
-            ↓
-       Model Selection
-            ↓
-Production Window
-    └── Out-of-Sample Prediction
-```
+- **Load Database:** Load OHLC data and categorized returns.
+- **Compute Output Feature:** Define the one-period-ahead categorized return.
+- **Compute Input Features:** Generate technical and statistical features, including proprietary indicators.
+- **Model Configuration:** Load modeling parameters from `modeling_arguments.json`.
+- **Model Training:** Train multiple classification models.
+- **Model Evaluation:** Evaluate models on training and testing datasets.
+- **Model Selection:** Select the best-performing model according to the evaluation metrics.
+- **Production Deployment:** Save the selected model and generate out-of-sample predictions.
 
-The development period contains approximately ten years of historical observations, followed by a twelve-month production period.
+### 2.6 Classification Models
 
-After each production period, the window advances and the process is repeated.
+The following Machine Learning classifiers were evaluated within each rolling window:
 
-This produces **14 sequential out-of-sample evaluations covering 2010–2023**.
+- Logistic Regression
+- Support Vector Classifier (SVC)
+- K-Nearest Neighbors (KNN)
+- Gradient Boosting Classifier
 
----
+Model performance was evaluated using:
+- Accuracy
+- Precision
+- Recall
+The selected model was subsequently stored and used during the production phase, with continuous monitoring of its performance.
 
-## **3. Machine Learning Pipeline**
-
-The implementation was developed in Python using the scientific Python ecosystem and scikit-learn.
-
-Each rolling window executes the following workflow:
-
-```text
-Load Data
-    ↓
-Compute Target
-    ↓
-Compute Input Features
-    ↓
-Configure Models
-    ↓
-Train Models
-    ↓
-Evaluate Development Performance
-    ↓
-Select Model
-    ↓
-Deploy to Production
-    ↓
-Generate Out-of-Sample Predictions
-```
-
-The models evaluated include:
-
-* Logistic Regression
-* Support Vector Classifier
-* K-Nearest Neighbors
-* Gradient Boosting Classifier
-
-Model selection is performed independently within each rolling window.
-
----
-
-## **4. Experimental Setup**
-
-| Component          | Configuration                   |
-| ------------------ | ------------------------------- |
-| Asset              | PETR4                           |
-| Market             | B3                              |
-| Frequency          | Daily                           |
-| Period             | 2010–2023                       |
-| Target             | Next-day return direction       |
-| Classes            | Up / Down                       |
-| Development Window | ~10 years                       |
-| Production Window  | 12 months                       |
-| Models             | LR, SVC, KNN, Gradient Boosting |
-| Evaluation         | Out-of-sample                   |
-| Transaction Cost   | 0.05% per operation             |
-
----
 
 ## **5. Results**
 
