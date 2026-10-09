@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="images/readme_cover.png" width="100%"
+  <img src="./cover.jpeg" width="100%"
        style="margin-left:auto;margin-right:auto;display:block;">
 </div>
 
