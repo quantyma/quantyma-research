@@ -50,11 +50,19 @@ $$
 where $\sigma_{\eta}$ represents 20% of the standard deviation of each respective state variable. All simulations were initialized from the state $(1, 1, 1)$.
 
 <div align="center">
-  <img src="./images/lorentz_3d.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/lorentz_3d.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong style="font-size: small;">Figure 1. Phase space visualization of the turbulent Lorenz-63 system under 20% stochastic noise.</strong></p>
 </div>
 
-### Preprocessing and Target Labeling
+
+<div align="center">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/axes_timeseries.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <p align="center"><strong style="font-size: small;">Figure 2: Component-wise time-series representation of the noisy ground truth. The extreme complexity
+and erratic transitions of the turbulent regime are evident across all axes.</strong></p>
+</div>
+
+
+### Time Series Preprocessing
 All state variables are normalized independently using **Min-Max scaling** to the range $[-1, 1]$, with parameters estimated exclusively from the training set:
 
 $$
@@ -149,14 +157,14 @@ $$
 A total of **three recurrent architectures** were trained for 20 epochs under identical conditions. The RNN was significantly faster (**12.59s**) compared to the gated architectures, with the GRU requiring the highest computational effort (**39.63s**) and the LSTM showing intermediate performance (**31.83s**).
 
 <div align="center">
-  <img src="./images/training_time.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
-  <p align="center"><strong>Figure 2. Total training time for 20 epochs per architecture.</strong></p>
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/training_time.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <p align="center"><strong>Figure 3. Total training time for 20 epochs per architecture.</strong></p>
 </div>
 
 Despite the varying computational costs, all architectures achieved efficient and stable convergence. The training and validation loss curves (MSE) are tightly coupled, serving as crucial evidence of strong generalization and **no overfitting to the 20% noise floor**.
 
 <div align="center">
-  <img src="./images/loss_curves.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/loss_curves.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 3. Learning curves (Training vs. Validation MSE Loss).</strong></p>
 </div>
 
@@ -173,12 +181,10 @@ Tables 2 and 3 summarize the **Root Mean Squared Error (RMSE)** for the validati
       <th>Y RMSE</th>
       <th>Z RMSE</th>
     </tr>
-    <tr><td>RNN</td><td>—</td><td>—</td><td>—</td></tr>
-    <tr><td>GRU</td><td>—</td><td>—</td><td>—</td></tr>
-    <tr><td>LSTM</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>RNN</td><td>3.460506</td><td>4.714817</td><td>4.328972</td></tr>
+    <tr><td>GRU</td><td>3.457373</td><td>4.526897</td><td>4.204965</td></tr>
+    <tr><td>LSTM</td><td>3.41793</td><td>4.441972</td><td>4.186257</td></tr>
   </table>
-
-  <p><em>Validation RMSE for each state variable (x, y, z).</em></p>
 </div>
 
 <div align="center">
@@ -191,13 +197,12 @@ Tables 2 and 3 summarize the **Root Mean Squared Error (RMSE)** for the validati
       <th>Y RMSE</th>
       <th>Z RMSE</th>
     </tr>
-    <tr><td>RNN</td><td>—</td><td>—</td><td>—</td></tr>
-    <tr><td>GRU</td><td>—</td><td>—</td><td>—</td></tr>
-    <tr><td>LSTM</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>RNN</td><td>3.249623</td><td>4.64957</td><td>4.331968</td></tr>
+    <tr><td>GRU</td><td>3.266047</td><td>4.447664</td><td>4.131323</td></tr>
+    <tr><td>LSTM</td><td>3.251254</td><td>4.386068</td><td>4.144141</td></tr>
   </table>
-
-  <p><em>Test RMSE for each state variable (x, y, z).</em></p>
 </div>
+
 
 The numerical results reveal a high degree of predictive consistency across all evaluated architectures. Notably, the RMSE values for the test set remain within the same order of magnitude as the validation metrics, indicating excellent generalization without overfitting the 20% stochastic floor. **Gated architectures (LSTM and GRU) outperformed the vanilla RNN**, albeit by a narrow margin, suggesting that their internal gating mechanisms provide a superior inductive bias for handling the rapid phase-space transitions of the system regime.
 
@@ -205,14 +210,14 @@ The numerical results reveal a high degree of predictive consistency across all 
 The visual analysis of the 3D trajectories confirms that the networks did not diverge from the attractor manifold. Even with significant stochastic interference, the models reconstructed the "butterfly" geometry with fidelity.
 
 <div align="center">
-  <img src="./images/3d_trajectories.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/3d_trajectories.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 4. Phase-space reconstruction of the turbulent Lorenz attractor.</strong></p>
 </div>
 
 The resilience to noise is further validated by the component-wise comparison. While the ground truth signals exhibit high-frequency oscillations, the neural predictions provide a **smoothed trajectory** that tracks the deterministic backbone of the system.
 
 <div align="center">
-  <img src="./images/comparison_by_axis.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/comparison_by_axis.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 5. Time-series comparison for X, Y, and Z components.</strong></p>
 </div>
 
@@ -220,7 +225,7 @@ The resilience to noise is further validated by the component-wise comparison. W
 The **Quantile-Quantile (Q-Q) plots** provide the ultimate proof of dynamical consistency. The residuals for all three models show a near-linear adherence to the theoretical normal distribution. This confirms that the models successfully internalized the deterministic Lorenz flow, leaving the **stochastic noise as the only remaining error component**.
 
 <div align="center">
-  <img src="./images/qq_plots.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/experiments/20260423_1457_efd11dea/plots/qq_plots.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 6. Q-Q plots of prediction residuals for RNN, GRU, and LSTM.</strong></p>
 </div>
 
@@ -271,3 +276,32 @@ The **Quantile-Quantile (Q-Q) plots** provide the ultimate proof of dynamical co
 ┣ 📜 README.md
 ┣ 📜 requirements.txt
 ┗ 📜 LICENSE
+```
+## Setup, Hardware & Execution
+
+### 1. Hardware & OS Environment (Original Workstation)
+The results were obtained using this specific configuration to ensure reproducibility:
+- **Host Model:** Lenovo ThinkPad E14 Gen 5 (21JS000SBO)
+- **OS:** Debian GNU/Linux 13.4 (Bookworm)
+- **CPU:** AMD Ryzen 7 7730U (8-Core / 16-Threads)
+- **GPU:** AMD Radeon Graphics (Barcelo)
+- **RAM:** 16GB LPDDR4
+- **Environment:** Local Research Station
+
+### Installation & Execution Script
+Run the commands below to configure the environment and start the experiment:
+
+```bash
+# Update system, install dependencies, configure Python environment and run
+sudo apt update && sudo apt install curl git -y && \
+curl -fsSL [https://pyenv.run](https://pyenv.run) | bash && \
+export PATH="$HOME/.pyenv/bin:$PATH" && \
+eval "$(pyenv init -)" && \
+eval "$(pyenv virtualenv-init -)" && \
+pyenv install 3.11.8 && \
+pyenv local 3.11.8 && \
+curl -sSL [https://install.python-poetry.org](https://install.python-poetry.org) | python3 - && \
+export PATH="$HOME/.local/bin:$PATH" && \
+poetry config virtualenvs.in-project true && \
+poetry install && \
+poetry run jupyter notebook src/experiment.ipynb
