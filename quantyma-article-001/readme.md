@@ -368,3 +368,14 @@ pip install -r requirements.txt
 ```
 
 The notebooks reproduce the main stages of the research, from data processing and feature construction to model evaluation and backtesting.
+
+___
+## Know the Author:
+
+<img width="1110" height="436" alt="image" src="https://github.com/user-attachments/assets/fc6245d9-9760-4265-9218-fb264726990d" />
+
+<p align="right">
+  <a href="https://www.linkedin.com/in/bpriantti/">
+    <img src="https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white" />
+  </a>
+</p>
