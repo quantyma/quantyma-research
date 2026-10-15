@@ -4,7 +4,7 @@
 </div>
 
 # **Anomaly Detection in Industrial Gearbox Systems Using Acoustic Signals Under Highly Noise Background**
-> This paper proposes a robust framework for **mechanical health monitoring** based on **signal conditioning** and **unsupervised subspace learning**. The methodology employs a signal conditioning pipeline based on **bandpass filtering** and **Hilbert Transform envelope extraction** to isolate amplitude-modulated components associated with gear meshing irregularities. These features are projected into a **principal component subspace**, where anomalies are identified through **reconstruction error analysis**. Validated on a public industrial benchmark dataset representative of real-world conditions, the proposed system achieved complete separation between normal and anomalous conditions, reaching scores of **1.0 for AUC, Precision, and Recall** across multiple noise intensities.
+> This paper proposes a robust framework for **mechanical health monitoring** based on **signal conditioning** and **unsupervised subspace learning**. The methodology employs a signal conditioning pipeline based on **bandpass filtering** and **Hilbert Transform envelope extraction** to isolate amplitude-modulated components associated with gear meshing irregularities. These features are projected into a **principal component subspace**, where anomalies are identified through **reconstruction error analysis**. Validated on a public industrial benchmark dataset representative of real-world conditions, the proposed system achieved complete separation between normal and anomalous conditions, reaching scores of **0.99 for AUC, Precision, and Recall** across multiple noise intensities.
 
 ## Research Question
 Can physically grounded signal processing combined with unsupervised subspace learning detect gearbox anomalies in acoustic signals under severe industrial noise?
@@ -30,8 +30,8 @@ The experimental framework consists of the following stages:
 - Score distribution and threshold selection
 - Model interpretability
 
-<div align="center">
-  <img src="./src/results/images/methodology_pipeline.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+<div align="center"> 
+  <img src="./src/results/figures/methodology_pipeline.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;"> 
   <p align="center"><strong style="font-size: small;">Figure 1. Proposed methodology pipeline for industrial gearbox anomaly detection.</strong></p>
 </div>
 
@@ -107,7 +107,7 @@ $$
 Following the exploratory signal analysis, a dedicated signal conditioning and denoising pipeline was designed to enhance fault-related components — specifically those associated with gear meshing and cyclic impacts — while suppressing the interference from environmental industrial noise.
 
 <div align="center">
-  <img src="./images/denoise_pipeline.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/denoise_pipeline.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong style="font-size: small;">Figure 2. Flowchart of the proposed acoustic signal conditioning pipeline.</strong></p>
 </div>
 
