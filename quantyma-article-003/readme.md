@@ -31,7 +31,7 @@ The experimental framework consists of the following stages:
 - Model interpretability
 
 <div align="center">
-  <img src="./images/methodology_pipeline.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/images/methodology_pipeline.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong style="font-size: small;">Figure 1. Proposed methodology pipeline for industrial gearbox anomaly detection.</strong></p>
 </div>
 
