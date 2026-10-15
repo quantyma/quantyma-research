@@ -305,8 +305,7 @@ export PATH="$HOME/.local/bin:$PATH" && \
 poetry config virtualenvs.in-project true && \
 poetry install && \
 poetry run jupyter notebook src/experiment.ipynb
-
-___
+```
 ## Know the Author:
 
 <img width="1110" height="436" alt="image" src="https://github.com/user-attachments/assets/41ec2fd8-2681-4e22-83ae-3ef8be57aded" />
