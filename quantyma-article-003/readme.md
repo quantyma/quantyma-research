@@ -107,7 +107,7 @@ $$
 Following the exploratory signal analysis, a dedicated signal conditioning and denoising pipeline was designed to enhance fault-related components — specifically those associated with gear meshing and cyclic impacts — while suppressing the interference from environmental industrial noise.
 
 <div align="center">
-  <img src="./src/results/figures/denoise_pipeline.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/denoising_pipeline.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong style="font-size: small;">Figure 2. Flowchart of the proposed acoustic signal conditioning pipeline.</strong></p>
 </div>
 
@@ -251,14 +251,14 @@ This analysis identifies which acoustic descriptors contribute most strongly to 
 The initial analysis focused on characterizing the acoustic environment and identifying the influence of different noise levels on the gearbox signals. Figure 3 presents the spectral energy distribution for low, medium, and high noise conditions. As the noise level increases, there is a significant baseline shift in spectral energy, particularly above 2 kHz. However, despite the high noise floor, the fundamental spectral peaks remain consistent, suggesting that key mechanical signatures are preserved.
 
 <div align="center">
-  <img src="./images/full_noise_profiles_plot.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/full_noise_profiles_plot.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 3. Mean Power Spectral Density (PSD) and spectral variability analysis under different noise conditions.</strong></p>
 </div>
 
 The stationarity is further confirmed by the average spectrograms. Across all noise intensities, the horizontal energy bands — corresponding to the gearbox meshing frequencies and their harmonics — remain visible, particularly between 4 kHz and 7 kHz.
 
 <div align="center">
-  <img src="./images/average_spectograms_plot.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/average_spectograms_plot.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 4. Average spectrogram representations for different noise conditions.</strong></p>
 </div>
 
@@ -293,7 +293,7 @@ The practical impact of the signal conditioning pipeline is evaluated by compari
 The Modulation Spectrum analysis confirms that the spectral energy of the envelope is concentrated in the low-frequency region (below 100 Hz), where distinct peaks associated with the gearbox's cyclic components can be identified (particularly around **50 Hz and 75 Hz**). The region above 100 Hz shows significant decay, confirming that the selected cutoff frequency effectively separates physically meaningful modulations from high-frequency background interference.
 
 <div align="center">
-  <img src="./images/filter_results_plots.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/filter_results_plots.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 5. Time-domain and frequency-domain responses before and after the proposed signal conditioning pipeline.</strong></p>
 </div>
 
@@ -303,7 +303,7 @@ The final stage evaluates the capability of the PCA-based model to distinguish b
 As shown in the ECDF plot, there is a **perfect separation** between the normal (blue) and anomalous (orange) distributions. The normal samples exhibit reconstruction errors close to zero, while anomalous samples present errors starting above **30** and reaching up to **80**. This substantial gap indicates that the principal subspace learned from healthy data does not generalize to fault-induced patterns, making the detection task highly robust.
 
 <div align="center">
-  <img src="./images/ecdf_plot.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/ecdf_plot.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 6. Empirical cumulative distribution function (ECDF) of PCA reconstruction errors for normal and anomalous samples.</strong></p>
 </div>
 
@@ -333,7 +333,7 @@ The interpretability analysis reveals several key findings:
 - **Envelope Dynamics:** Features such as `num_peaks` and `peak_interval_mean` validate that the denoising pipeline preserved the cyclic nature of the gear meshing.
 
 <div align="center">
-  <img src="./images/pca_feature_importance.png" width="90%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/pca_feature_importance.png" width="90%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 7. Feature importance estimated from the mean absolute PCA loadings.</strong></p>
 </div>
 
@@ -384,3 +384,44 @@ The interpretability analysis reveals several key findings:
 ┣ 📜 README.md
 ┣ 📜 requirements.txt
 ┗ 📜 LICENSE
+```
+
+## Setup, Hardware & Execution
+
+### 1. Hardware & OS Environment (Original Workstation)
+The results were obtained using this specific configuration to ensure reproducibility:
+- **Host Model:** Lenovo ThinkPad E14 Gen 5 (21JS000SBO)
+- **OS:** Debian GNU/Linux 13.4 (Bookworm)
+- **CPU:** AMD Ryzen 7 7730U (8-Core / 16-Threads)
+- **GPU:** AMD Radeon Graphics (Barcelo)
+- **RAM:** 24GB LPDDR4
+- **Environment:** Local Research Station
+
+### 2. Installation & Execution Script
+Run the commands below to configure the environment and start the experiment:
+
+```bash
+# Update system, install dependencies, configure Python environment and run
+sudo apt update && sudo apt install curl git -y && \
+curl -fsSL [https://pyenv.run](https://pyenv.run) | bash && \
+export PATH="$HOME/.pyenv/bin:$PATH" && \
+eval "$(pyenv init -)" && \
+eval "$(pyenv virtualenv-init -)" && \
+pyenv install 3.11.8 && \
+pyenv local 3.11.8 && \
+curl -sSL [https://install.python-poetry.org](https://install.python-poetry.org) | python3 - && \
+export PATH="$HOME/.local/bin:$PATH" && \
+poetry config virtualenvs.in-project true && \
+poetry install && \
+poetry run jupyter notebook src/experiment.ipynb
+```
+
+## Know the Author:
+
+<img width="1110" height="436" alt="image" src="https://github.com/user-attachments/assets/41ec2fd8-2681-4e22-83ae-3ef8be57aded" />
+
+<p align="right">
+  <a href="https://www.linkedin.com/in/bpriantti/">
+    <img src="https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white" />
+  </a>
+</p>
