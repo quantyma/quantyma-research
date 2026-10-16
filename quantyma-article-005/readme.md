@@ -1,4 +1,4 @@
-# SCAS: Structural Change Alert Signal for European Energy Generation Networks
+# Structural Change Alert Signal for European Energy Generation Networks
 
 **Author:** Bruno Priantti | **Quantyma Research**
 **Field:** Complex Systems, Temporal Networks, Time-Series Analysis, Energy Systems
