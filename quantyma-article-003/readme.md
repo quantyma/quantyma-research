@@ -30,9 +30,15 @@ The experimental framework consists of the following stages:
 - Score distribution and threshold selection
 - Model interpretability
 
-<div align="center"> 
-  <img src="./src/results/figures/methodology_pipeline.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;"> 
-  <p align="center"><strong style="font-size: small;">Figure 1. Proposed methodology pipeline for industrial gearbox anomaly detection.</strong></p>
+<div align="center">
+  <table style="border: 1px solid black;">
+    <tr>
+      <td>
+        <img src="./src/results/figures/methodology_pipeline.png" width="100%">
+      </td>
+    </tr>
+  </table>
+  <p><strong style="font-size: small;">Figure 1. Proposed methodology pipeline for industrial gearbox anomaly detection.</strong></p>
 </div>
 
 ### Sample Acquisition and Experimental Setup
@@ -106,10 +112,18 @@ $$
 ### Signal Conditioning and Denoising Pipeline
 Following the exploratory signal analysis, a dedicated signal conditioning and denoising pipeline was designed to enhance fault-related components — specifically those associated with gear meshing and cyclic impacts — while suppressing the interference from environmental industrial noise.
 
+
 <div align="center">
-  <img src="./src/results/figures/denoising_pipeline.png" width="60%" style="margin-left: auto; margin-right: auto; display:block;">
-  <p align="center"><strong style="font-size: small;">Figure 2. Flowchart of the proposed acoustic signal conditioning pipeline.</strong></p>
+  <table style="border: 1px solid black;">
+    <tr>
+      <td>
+        <img src="./src/results/figures/denoising_pipeline.png" width="60%">
+      </td>
+    </tr>
+  </table>
+  <p><strong style="font-size: small;">Figure 1. Proposed methodology pipeline for industrial gearbox anomaly detection.</strong></p>
 </div>
+
 
 The pipeline is composed of four sequential stages:
 
