@@ -265,14 +265,14 @@ This analysis identifies which acoustic descriptors contribute most strongly to 
 The initial analysis focused on characterizing the acoustic environment and identifying the influence of different noise levels on the gearbox signals. Figure 3 presents the spectral energy distribution for low, medium, and high noise conditions. As the noise level increases, there is a significant baseline shift in spectral energy, particularly above 2 kHz. However, despite the high noise floor, the fundamental spectral peaks remain consistent, suggesting that key mechanical signatures are preserved.
 
 <div align="center">
-  <img src="./src/results/figures/full_noise_profiles_plot.png" width="70%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/full_noise_profiles_plot.png" width="100%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 3. Mean Power Spectral Density (PSD) and spectral variability analysis under different noise conditions.</strong></p>
 </div>
 
 The stationarity is further confirmed by the average spectrograms. Across all noise intensities, the horizontal energy bands — corresponding to the gearbox meshing frequencies and their harmonics — remain visible, particularly between 4 kHz and 7 kHz.
 
 <div align="center">
-  <img src="./src/results/figures/average_spectograms_plot.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/average_spectograms_plot.png" width="100%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 4. Average spectrogram representations for different noise conditions.</strong></p>
 </div>
 
@@ -307,7 +307,7 @@ The practical impact of the signal conditioning pipeline is evaluated by compari
 The Modulation Spectrum analysis confirms that the spectral energy of the envelope is concentrated in the low-frequency region (below 100 Hz), where distinct peaks associated with the gearbox's cyclic components can be identified (particularly around **50 Hz and 75 Hz**). The region above 100 Hz shows significant decay, confirming that the selected cutoff frequency effectively separates physically meaningful modulations from high-frequency background interference.
 
 <div align="center">
-  <img src="./src/results/figures/filter_results_plots.png" width="80%" style="margin-left: auto; margin-right: auto; display:block;">
+  <img src="./src/results/figures/filter_results_plots.png" width="100%" style="margin-left: auto; margin-right: auto; display:block;">
   <p align="center"><strong>Figure 5. Time-domain and frequency-domain responses before and after the proposed signal conditioning pipeline.</strong></p>
 </div>
 
@@ -321,7 +321,7 @@ As shown in the ECDF plot, there is a **perfect separation** between the normal 
   <p align="center"><strong>Figure 6. Empirical cumulative distribution function (ECDF) of PCA reconstruction errors for normal and anomalous samples.</strong></p>
 </div>
 
-Consequently, the model achieved a score of **1.0 for all primary metrics** — AUC, Precision, Recall, and F1-Score — regardless of the environmental noise level.
+Consequently, the model achieved a score of **0.99 for all primary metrics** — AUC, Precision, Recall, and F1-Score — regardless of the environmental noise level.
 
 <div align="center">
   <p><strong>Table 7. Performance metrics in test obtained using PCA-based anomaly detection</strong></p>
