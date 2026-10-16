@@ -1,6 +1,11 @@
 <div align="center">
-  <img src="./image_cover.jpeg" width="100%"
-       style="margin-left:auto;margin-right:auto;display:block;">
+  <table style="border:1px solid black;">
+    <tr>
+      <td>
+        <img src="./image_cover.jpeg" width="100%">
+      </td>
+    </tr>
+  </table>
 </div>
 
 # **Scenario-Based Dynamic Modeling Framework for Multi-Vector Hybrid Microgrids in Isolated Amazonian Defense Outposts**
