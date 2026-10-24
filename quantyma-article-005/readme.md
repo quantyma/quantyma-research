@@ -180,7 +180,7 @@ An anomaly is considered a match if it falls within a **two-month tolerance** of
 The top panel shows the raw time series (in MW), highlighting heterogeneous scales and outliers. The bottom panel presents the standardized time series via z-score normalization.
 
 <div align="center">
-  <img src="./images/raw_vs_standardized.png" width="60%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
+  <img src="./images/raw_vs_standardized.png" width="100%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
   <p align="center"><strong>Figure 5. Time Series Preprocessing.</strong></p>
 </div>
 
@@ -188,7 +188,7 @@ The top panel shows the raw time series (in MW), highlighting heterogeneous scal
 The progressive densification and shifting connectivity patterns across snapshots reveal structural changes in the interdependence of energy generation profiles over time. Red edges indicate positive correlations (co-movement), while blue edges indicate negative correlations.
 
 <div align="center">
-  <img src="./images/evolution_of_network.png" width="80%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
+  <img src="./images/evolution_of_network.png" width="100%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
   <p align="center"><strong>Figure 6. Evolution of Network.</strong></p>
 </div>
 
@@ -196,28 +196,50 @@ The progressive densification and shifting connectivity patterns across snapshot
 The co-occurrence of anomalies across multiple metrics (e.g., around 2018, 2020, and 2021–2022) suggests periods of structural reconfiguration in the energy generation correlation network.
 
 <div align="center">
-  <img src="./images/network_metrics_time_series.png" width="70%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
+  <img src="./images/network_metrics_time_series.png" width="80%" style="margin-left: auto; margin-right: auto; display:block; border: 1px solid black;">
   <p align="center"><strong>Figure 7. Temporal Network Metrics.</strong></p>
 </div>
 
 ### Event-Discord Match
 
 <div align="center">
-  <p><strong>Table 3. Match between documented events and detected anomalies.</strong></p>
+  <p><strong>Table 3. Alignment between documented events and detected discords.</strong></p>
 
   <table>
     <tr>
-      <th>Event Category</th>
-      <th>Matched Events</th>
-      <th>Discord Dates</th>
-      <th>Metrics Involved</th>
+      <th>Event Date</th>
+      <th>Event</th>
+      <th>Category</th>
+      <th>Matched</th>
     </tr>
-    <tr><td>Geopolitical</td><td>—</td><td>—</td><td>Density, Clustering</td></tr>
-    <tr><td>Market</td><td>—</td><td>—</td><td>Modularity, Density</td></tr>
-    <tr><td>Climate</td><td>—</td><td>—</td><td>Clustering, Assortativity</td></tr>
-    <tr><td>Infrastructure</td><td>—</td><td>—</td><td>Density, Modularity</td></tr>
-    <tr><td>Policy</td><td>—</td><td>—</td><td>Modularity</td></tr>
-    <tr><td>Sanitary</td><td>—</td><td>—</td><td>Density, Clustering</td></tr>
+    <tr><td>2016-06</td><td>Brexit</td><td>Geopolitics</td><td>False</td></tr>
+    <tr><td>2018-07</td><td>Drought and Heatwave</td><td>Climate</td><td>True</td></tr>
+    <tr><td>2018-09</td><td>CO2 Crisis</td><td>Market</td><td>True</td></tr>
+    <tr><td>2019-01</td><td>German Nuclear Phase-out (1)</td><td>Infrastructure</td><td>True</td></tr>
+    <tr><td>2019-06</td><td>Record Heatwave</td><td>Climate</td><td>True</td></tr>
+    <tr><td>2019-06</td><td>Clean Energy Package</td><td>Policy</td><td>True</td></tr>
+    <tr><td>2020-01</td><td>Brexit Formalized</td><td>Geopolitics</td><td>True</td></tr>
+    <tr><td>2020-03</td><td>COVID-19</td><td>Health</td><td>True</td></tr>
+    <tr><td>2020-04</td><td>Negative Oil Prices</td><td>Market</td><td>True</td></tr>
+    <tr><td>2020-09</td><td>55% Renewable Energy Target</td><td>Policy</td><td>True</td></tr>
+    <tr><td>2021-01</td><td>Biden Rejoins the Paris Agreement</td><td>Geopolitics</td><td>True</td></tr>
+    <tr><td>2021-01</td><td>German Nuclear Phase-out (2)</td><td>Infrastructure</td><td>True</td></tr>
+    <tr><td>2021-07</td><td>Germany/Belgium Floods</td><td>Climate</td><td>True</td></tr>
+    <tr><td>2021-09</td><td>Gas Crisis</td><td>Market</td><td>False</td></tr>
+    <tr><td>2021-10</td><td>Global Energy Crisis</td><td>Market</td><td>True</td></tr>
+    <tr><td>2022-02</td><td>Invasion of Ukraine</td><td>Geopolitics</td><td>True</td></tr>
+    <tr><td>2022-04</td><td>French Nuclear Power Issues</td><td>Infrastructure</td><td>True</td></tr>
+    <tr><td>2022-05</td><td>REPowerEU</td><td>Policy</td><td>True</td></tr>
+    <tr><td>2022-06</td><td>Extreme Drought</td><td>Climate</td><td>True</td></tr>
+    <tr><td>2022-08</td><td>Gas Prices Reach €300/MWh</td><td>Market</td><td>True</td></tr>
+    <tr><td>2022-09</td><td>Nord Stream Sabotage</td><td>Geopolitics</td><td>True</td></tr>
+    <tr><td>2022-12</td><td>Gas Price Cap</td><td>Market</td><td>False</td></tr>
+    <tr><td>2023-04</td><td>German Nuclear Phase-out (3)</td><td>Infrastructure</td><td>False</td></tr>
+    <tr><td>2023-06</td><td>French Nuclear Recovery</td><td>Infrastructure</td><td>True</td></tr>
+    <tr><td>2023-07</td><td>Hottest July on Record</td><td>Climate</td><td>True</td></tr>
+    <tr><td>2023-10</td><td>Israel-Hamas War</td><td>Geopolitics</td><td>True</td></tr>
+    <tr><td>2023-10</td><td>Electricity Market Reform</td><td>Policy</td><td>True</td></tr>
+    <tr><td>2024-01</td><td>Mild Winter</td><td>Climate</td><td>True</td></tr>
   </table>
 </div>
 
